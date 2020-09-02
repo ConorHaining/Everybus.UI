@@ -5,4 +5,7 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  variants: {
+    borderColor: ['responsive', 'hover', 'focus', 'focus-within'],
+  },
 }
