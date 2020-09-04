@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@import './styles/_button.scss';
+
+
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+}
