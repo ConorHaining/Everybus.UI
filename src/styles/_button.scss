@@ -7,6 +7,12 @@
     @apply border-4;
     @apply border-green-900;
 
+    &.btn-small {
+        @apply border-2;
+        @apply p-2;
+        @apply text-sm;
+    }
+
     &:hover {
         @apply bg-green-700
     }

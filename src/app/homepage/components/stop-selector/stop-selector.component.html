@@ -1,1 +1,41 @@
-<p>stop-selector works!</p>
+<div class="absolute h-screen w-screen inset-0 bg-white">
+    <header class="bg-green-100 h-20 px-4 py-2 flex items-center justify-between">
+        <h1 class="text-3xl">Find your stop</h1>
+        <button>❌</button>
+    </header>
+    <section class="p-2">
+        <label class="sr-only" for="stop-search">Search for a stop by name</label>
+        <input
+            autofocus="true"
+            autocomplete="off"
+            placeholder="Some stop value"
+            type="text"
+            name="stop-search"
+            id="stop-search"
+            class="p-4 rounded-sm text-lg bg-gray-200 border-4 border-green-900 w-full">
+        <button class="btn btn-small w-full mt-1">🎲 Pick randomly</button>
+        <ul class="w-full">
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚌</span> Stop Name
+            </li>
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚌</span> Stop Name
+            </li>
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚋</span> Stop Name Longer Name
+            </li>
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚌</span> Stop Name Stop NameStop Name NameStop NameNameName
+            </li> 
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚲</span> Stop Name
+            </li>
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚌</span> Stop Name
+            </li>
+            <li class="border-b px-2 py-4 truncate overflow">
+                <span class="mr-2">🚂</span> Stop Name
+            </li>
+        </ul>
+    </section>
+</div>

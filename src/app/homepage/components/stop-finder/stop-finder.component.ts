@@ -24,7 +24,7 @@ export class StopFinderComponent implements OnInit {
     const viewContainerRef = this.selectorHolder.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<StopSelectorComponent>(componentFactory);
+    viewContainerRef.createComponent<StopSelectorComponent>(componentFactory);
   }
 
 }
