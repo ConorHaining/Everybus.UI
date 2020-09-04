@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ElementRef } from '@angular/core';
+import { StopSelectorComponent } from '../stop-selector/stop-selector.component';
+import { OverlayHostDirective } from '../../directives/overlay-host.directive';
 
 @Component({
   selector: 'stop-finder',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StopFinderComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(OverlayHostDirective) selectorHolder: OverlayHostDirective;
+
+  constructor(
+    private readonly componentFactoryResolver: ComponentFactoryResolver
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  openSelector(): void {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(StopSelectorComponent);
+
+    const viewContainerRef = this.selectorHolder.viewContainerRef;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent<StopSelectorComponent>(componentFactory);
   }
 
 }

@@ -1,29 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StopFinderComponent } from './stop-finder.component';
+import { StopSelectorComponent } from './stop-selector.component';
 
-describe('StopFinderComponent', () => {
-  let component: StopFinderComponent;
-  let fixture: ComponentFixture<StopFinderComponent>;
+describe('StopSelectorComponent', () => {
+  let component: StopSelectorComponent;
+  let fixture: ComponentFixture<StopSelectorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StopFinderComponent ]
+      declarations: [ StopSelectorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StopFinderComponent);
+    fixture = TestBed.createComponent(StopSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('openSelector', () => {
-
   });
 });
