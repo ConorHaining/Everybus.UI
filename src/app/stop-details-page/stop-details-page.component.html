@@ -4,6 +4,6 @@
         <h2>Towards City, Gyle Centre, Riccarton..</h2>
     </header>
     <main class="mt-2">
-        <departure-details></departure-details>
+        <departure-details *ngFor="let departure of departures" [departure]="departure"></departure-details>
     </main>
 </div>

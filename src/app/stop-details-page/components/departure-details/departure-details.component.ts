@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DepartureInformation } from '../../models/DepartureInformation';
 
 @Component({
   selector: 'departure-details',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartureDetailsComponent implements OnInit {
 
+  @Input() departure: DepartureInformation;
   showDepartures = false;
 
   constructor() { }
