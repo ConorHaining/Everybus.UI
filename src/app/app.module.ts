@@ -9,6 +9,7 @@ import { StopSelectorComponent } from './homepage/components/stop-selector/stop-
 import { OverlayHostDirective } from './homepage/directives/overlay-host.directive';
 import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
 import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
+import { MapPageComponent } from './map-page/map-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DepartureDetailsComponent } from './stop-details-page/components/depart
     StopSelectorComponent,
     OverlayHostDirective,
     StopDetailsPageComponent,
-    DepartureDetailsComponent
+    DepartureDetailsComponent,
+    MapPageComponent
   ],
   imports: [
     BrowserModule,

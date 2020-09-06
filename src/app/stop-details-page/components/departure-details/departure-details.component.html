@@ -16,7 +16,7 @@
             <li *ngFor="let departure of departure.departures" class="flex justify-between py-2">
                 <div class="flex-grow">{{ departure.destination }}</div>
                 <div class="px-2">{{ departure.when }}</div>
-                <button class="px-2">🗺️</button>
+                <button class="px-2" routerLink="/journey/1234">🗺️</button>
             </li>
         </ul>
     </div>
