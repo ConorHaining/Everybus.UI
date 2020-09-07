@@ -32,7 +32,7 @@
             ],
             "scripts": [],
             "customWebpackConfig": {
-              "path": "./webpack.config.js"
+              "path": "./webpack.config.prod.js"
             }
           },
           "configurations": {
