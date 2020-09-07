@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
+import { StopFilterPipe } from '../../pipes/stop-filter.pipe';
+import { StopsService } from './../../../services/stops.service';
 import { StopSelectorComponent } from './stop-selector.component';
 
 describe('StopSelectorComponent', () => {
@@ -8,7 +10,18 @@ describe('StopSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StopSelectorComponent ]
+      declarations: [
+        StopSelectorComponent,
+        StopFilterPipe
+      ],
+      providers: [
+        {
+          provide: StopsService,
+          useValue: {
+            getAllStops: () => of()
+          }
+        }
+      ]
     })
     .compileComponents();
   }));

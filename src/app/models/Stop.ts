@@ -1,6 +1,6 @@
 export interface Stop {
-    atocCode: string;
-    stopId: string;
+    atco_code: string;
+    stop_id: string;
     name: string;
     identifer?: string;
     direction: string;
