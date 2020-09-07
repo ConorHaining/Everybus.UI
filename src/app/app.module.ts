@@ -1,15 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage/homepage.component';
 import { StopFinderComponent } from './homepage/components/stop-finder/stop-finder.component';
 import { StopSelectorComponent } from './homepage/components/stop-selector/stop-selector.component';
 import { OverlayHostDirective } from './homepage/directives/overlay-host.directive';
-import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
-import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
+import { HomepageComponent } from './homepage/homepage/homepage.component';
 import { MapPageComponent } from './map-page/map-page.component';
+import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
+import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MapPageComponent } from './map-page/map-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

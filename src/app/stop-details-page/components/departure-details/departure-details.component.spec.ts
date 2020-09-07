@@ -8,14 +8,20 @@ describe('DepartureDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DepartureDetailsComponent ]
+      declarations: [DepartureDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DepartureDetailsComponent);
     component = fixture.componentInstance;
+    component.departure = {
+      serviceName: 'XX',
+      backgroundColour: '#FFFFFF',
+      textColour: '#000000',
+      departures: []
+    };
     fixture.detectChanges();
   });
 

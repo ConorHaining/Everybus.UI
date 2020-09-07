@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { StopFinderComponent } from './../components/stop-finder/stop-finder.component';
 
 import { HomepageComponent } from './homepage.component';
 
@@ -8,7 +9,10 @@ describe('HomepageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomepageComponent ]
+      declarations: [
+        HomepageComponent,
+        StopFinderComponent
+      ]
     })
     .compileComponents();
   }));

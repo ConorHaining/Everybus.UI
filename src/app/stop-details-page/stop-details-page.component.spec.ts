@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DepartureDetailsComponent } from './components/departure-details/departure-details.component';
 
 import { StopDetailsPageComponent } from './stop-details-page.component';
 
@@ -8,7 +9,10 @@ describe('StopDetailsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StopDetailsPageComponent ]
+      declarations: [
+        StopDetailsPageComponent,
+        DepartureDetailsComponent
+      ]
     })
     .compileComponents();
   }));

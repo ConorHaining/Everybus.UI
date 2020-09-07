@@ -18,7 +18,6 @@ export class DepartureDetailsComponent implements OnInit {
 
   toggleDepartures(): void {
     this.showDepartures = !this.showDepartures;
-
   }
 
 }
