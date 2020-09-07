@@ -1,11 +1,26 @@
 .btn {
-    @apply bg-purple-500;
+    @apply bg-green-500;
     @apply p-4;
     @apply rounded-sm;
-    @apply text-white;
+    @apply text-black;
     @apply text-lg;
     @apply border-4;
-    @apply border-purple-700;
+    @apply border-green-700;
+
+    &.btn-secondary {
+        @apply bg-blue-400;
+        @apply border-blue-600;
+        @apply text-white;
+
+        &:hover {
+            @apply bg-blue-300
+        }
+    
+        &.active,
+        &:active {
+            @apply bg-blue-600;
+        }
+    }
 
     &.btn-s {
         @apply border-2;
@@ -24,11 +39,11 @@
     }
 
     &:hover {
-        @apply bg-purple-400
+        @apply bg-green-400
     }
 
     &.active,
     &:active {
-        @apply bg-purple-700;
+        @apply bg-green-700;
     }
 }
