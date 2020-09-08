@@ -12,11 +12,7 @@ module.exports = {
                     plugins: () => [
                         require('postcss-import'),
                         require('tailwindcss')('tailwind.config.js'),
-                        require('autoprefixer'),
-                        purgecss({
-                            content: ['./**/*.html'],
-                            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-                        })
+                        require('autoprefixer')
                     ]
                 }
             }
