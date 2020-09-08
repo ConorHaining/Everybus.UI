@@ -17,7 +17,7 @@ describe('DepartureDetailsComponent', () => {
     fixture = TestBed.createComponent(DepartureDetailsComponent);
     component = fixture.componentInstance;
     component.departure = {
-      serviceName: 'XX',
+      routeName: 'XX',
       backgroundColour: '#FFFFFF',
       textColour: '#000000',
       departures: []

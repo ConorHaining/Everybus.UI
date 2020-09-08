@@ -1,13 +1,13 @@
 <div class="mt-2 px-2 bg-white shadow-md">
     <div class="grid grid-rows-2 grid-cols-6 gap-x-2 py-4" (click)="toggleDepartures()">
         <div class="col-span-1 row-span-2 flex justify-center items-center">
-            <span class="py-1 px-4 rounded-sm font-semibold text-xl" [style.backgroundColor]="departure.backgroundColour" [style.color]="departure.textColour">{{ departure.serviceName }}</span>
+            <span class="py-1 px-4 rounded-sm font-semibold text-xl" [style.backgroundColor]="departure.backgroundColour" [style.color]="departure.textColour">{{ departure.routeName }}</span>
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-end">
-            <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.when }}
+            <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.departureTime | relativeTime }}
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-start">
-            <strong>Then:&nbsp;</strong> {{ departure?.departures[1]?.when }}, {{ departure?.departures[2]?.when }} ..
+            <strong>Then:&nbsp;</strong> {{ departure?.departures[1]?.departureTime | relativeTime }}, {{ departure?.departures[2]?.departureTime | relativeTime }} ..
         </div>
         <div class="col-start-6 col-end-7 row-start-1 row-span-2 flex justify-center items-center">
             <span *ngIf="!showDepartures">🔼</span>
@@ -19,7 +19,7 @@
         <ul>
             <li *ngFor="let departure of departure.departures" class="flex justify-between items-center py-2">
                 <div class="flex-grow">{{ departure.destination }}</div>
-                <div class="px-2">{{ departure.when }}</div>
+                <div class="px-2">{{ departure.departureTime | relativeTime }}</div>
                 <button class="btn btn-xs btn-outline" routerLink="/journey/1234">🗺️</button>
             </li>
         </ul>

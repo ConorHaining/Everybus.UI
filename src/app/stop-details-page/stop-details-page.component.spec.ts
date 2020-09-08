@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { StopsService } from '../services/stops.service';
 import { DepartureDetailsComponent } from './components/departure-details/departure-details.component';
-
 import { StopDetailsPageComponent } from './stop-details-page.component';
 
 describe('StopDetailsPageComponent', () => {
@@ -12,6 +13,15 @@ describe('StopDetailsPageComponent', () => {
       declarations: [
         StopDetailsPageComponent,
         DepartureDetailsComponent
+      ],
+      providers: [
+        {
+          provide: StopsService,
+          useValue: {
+            getAllStops: () => of(),
+            getStopDepartures: () => of()
+          }
+        }
       ]
     })
     .compileComponents();

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { pluck, map } from 'rxjs/operators';
+import { pluck, map, filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Stop } from './../models/Stop';
+import { DepartureInformation } from '../stop-details-page/models/DepartureInformation';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,19 @@ export class StopsService {
         });
       })
     );
+  }
+
+  getStopByAtco(atcoCode: string): Observable<Stop> {
+    return this.getAllStops()
+                .pipe(
+                  map((response: any[]) => {
+                    return response.find(stop => stop.atco_code === atcoCode);
+                  })
+                );
+  }
+
+  getStopDepartures(stopId: string): Observable<DepartureInformation[]> {
+    const url = environment.tfeOpenDataUrls.liveTimes.replace('{stop_id}', stopId);
+    return this.http.get<DepartureInformation[]>(url);
   }
 }

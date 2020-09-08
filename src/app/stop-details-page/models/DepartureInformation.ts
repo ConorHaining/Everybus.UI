@@ -1,5 +1,5 @@
 export interface DepartureInformation {
-    serviceName: string;
+    routeName: string;
     backgroundColour: string;
     textColour: string;
 
@@ -9,5 +9,9 @@ export interface DepartureInformation {
 export interface Departure {
     when: string;
     destination: string;
-    journeyId: string;
+    tripId: string;
+    vehicleId: string;
+    departureTime: string;
+    isLive: boolean;
+    isDiverted: boolean;
 }

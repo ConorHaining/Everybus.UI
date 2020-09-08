@@ -14,6 +14,7 @@ import { MapPageComponent } from './map-page/map-page.component';
 import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
 import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
 import { DestinationsOutputPipe } from './homepage/pipes/destinations-output.pipe';
+import { RelativeTimePipe } from './stop-details-page/pipes/relative-time.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DestinationsOutputPipe } from './homepage/pipes/destinations-output.pip
     DepartureDetailsComponent,
     MapPageComponent,
     StopFilterPipe,
-    DestinationsOutputPipe
+    DestinationsOutputPipe,
+    RelativeTimePipe
   ],
   imports: [
     BrowserModule,
