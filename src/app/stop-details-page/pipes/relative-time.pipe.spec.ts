@@ -29,4 +29,13 @@ describe('RelativeTimePipe', () => {
 
     expect(result).toEqual('Now');
   });
+
+  it('it should return the absolute time from now when in 45 minutes or more', () => {
+    const utcTimestamp = '2020-09-08T14:05:00+00:00';
+    const pipe = new RelativeTimePipe();
+
+    const result = pipe.transform(utcTimestamp);
+
+    expect(result).toEqual('14:05');
+  });
 });
