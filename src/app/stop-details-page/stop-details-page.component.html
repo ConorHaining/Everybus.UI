@@ -2,8 +2,8 @@
     <header>
         <button class="btn btn-s btn-secondary w-full" routerLink="/">◀️ Go back</button>
         <div class="my-6">
-            <h1 class="text-3xl">🚏 {{ stop.name }}</h1>
-            <h2 class="truncate">↖️ Towards {{ stop.destinations | destinationsOutput }}</h2>
+            <h1 class="text-3xl">🚏 {{ stop?.name }}</h1>
+            <h2 class="truncate">↖️ Towards {{ stop?.destinations | destinationsOutput }}</h2>
         </div>
     </header>
     <main class="mt-2">

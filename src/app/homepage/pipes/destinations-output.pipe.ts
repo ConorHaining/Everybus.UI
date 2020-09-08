@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DestinationsOutputPipe implements PipeTransform {
 
   transform(value: string[]): string {
-
+    if (!value) { value = []; }
     if (value.length > 2) {
       return value.slice(0, value.length - 1).join(', ') + ', and ' + value.slice(-1);
     } else if (value.length === 2) {

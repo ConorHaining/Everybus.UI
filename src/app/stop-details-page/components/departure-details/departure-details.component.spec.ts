@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RelativeTimePipe } from './../../pipes/relative-time.pipe';
 
 import { DepartureDetailsComponent } from './departure-details.component';
 
@@ -8,7 +9,10 @@ describe('DepartureDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DepartureDetailsComponent]
+      declarations: [
+        DepartureDetailsComponent,
+        RelativeTimePipe
+      ]
     })
       .compileComponents();
   }));

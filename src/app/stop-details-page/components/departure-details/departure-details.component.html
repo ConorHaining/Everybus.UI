@@ -7,7 +7,9 @@
             <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.departureTime | relativeTime }}
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-start">
-            <strong>Then:&nbsp;</strong> {{ departure?.departures[1]?.departureTime | relativeTime }}, {{ departure?.departures[2]?.departureTime | relativeTime }} ..
+            <span class="truncate">
+                <strong>Then:&nbsp;</strong>{{ departure?.departures[1]?.departureTime | relativeTime }}, {{ departure?.departures[2]?.departureTime | relativeTime }}
+            </span>
         </div>
         <div class="col-start-6 col-end-7 row-start-1 row-span-2 flex justify-center items-center">
             <span *ngIf="!showDepartures">🔼</span>
@@ -18,7 +20,7 @@
     <div [class.hidden]="!showDepartures" class="border-t-2">
         <ul>
             <li *ngFor="let departure of departure.departures" class="flex justify-between items-center py-2">
-                <div class="flex-grow">{{ departure.destination }}</div>
+                <div class="flex-grow">{{ departure.destination }} [{{ departure.vehicleId }}]</div>
                 <div class="px-2">{{ departure.departureTime | relativeTime }}</div>
                 <button class="btn btn-xs btn-outline" routerLink="/journey/1234">🗺️</button>
             </li>
