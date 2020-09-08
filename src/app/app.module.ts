@@ -15,6 +15,8 @@ import { DepartureDetailsComponent } from './stop-details-page/components/depart
 import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
 import { DestinationsOutputPipe } from './homepage/pipes/destinations-output.pipe';
 import { RelativeTimePipe } from './stop-details-page/pipes/relative-time.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { RelativeTimePipe } from './stop-details-page/pipes/relative-time.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
