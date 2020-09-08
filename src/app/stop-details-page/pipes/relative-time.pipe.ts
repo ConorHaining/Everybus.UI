@@ -22,7 +22,14 @@ export class RelativeTimePipe implements PipeTransform {
 
   transform(timestamp: string): string {
     const utc = moment.utc(timestamp);
-    return utc.local(true).fromNow();
+    const local = utc.local(true);
+
+    if (local.diff(moment(), 'minute', true) <= 1) {
+      return 'Now';
+    } else {
+      return local.fromNow();
+    }
+
   }
 
 }
