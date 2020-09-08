@@ -43,6 +43,15 @@ export class StopsService {
       );
   }
 
+  getStopByStopId(stopId: string): Observable<Stop> {
+    return this.getAllStops()
+      .pipe(
+        map((response: any[]) => {
+          return response.find(stop => stop.stop_id === stopId);
+        })
+      );
+  }
+
   getStopDepartures(stopId: string): Observable<DepartureInformation[]> {
     const url = environment.tfeOpenDataUrls.liveTimes.replace('{stop_id}', stopId);
     return this.http.get<DepartureInformation[]>(url).pipe(

@@ -20,15 +20,8 @@ export class StopDetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const atcoCode = params.get('atcoCode');
-      this.stopsService.getStopByAtco(atcoCode).subscribe(stop => {
-        this.stop = stop;
-        this.stopsService.getStopDepartures(stop.stop_id).subscribe(departrues => {
-          this.departures = departrues;
-        });
-      });
-    });
+    this.stop = this.route.snapshot.data.stop;
+    this.departures = this.route.snapshot.data.departures;
   }
 
 }
