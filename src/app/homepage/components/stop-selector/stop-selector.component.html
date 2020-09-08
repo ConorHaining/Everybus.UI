@@ -22,7 +22,7 @@
                 *ngFor="let stop of stops | stopFilter:stopInput | slice:0:10 ; let i=index">
                 <div class="row-span-2 col-span-1 flex justify-center items-center">🚌</div>
                 <span class="mr-2 row-span-1 col-start-2 colspan-4">{{ stop.name }}</span>
-                <small class="row-span-1 col-start-2 colspan-4">Towards {{ stop.destinations | destinationsOutput }}</small>
+                <small class="row-span-1 col-start-2 colspan-4">{{ stop.destinations | destinationsOutput }}</small>
             </li>
         </ul>
     </section>

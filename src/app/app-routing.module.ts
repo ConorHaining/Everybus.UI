@@ -6,7 +6,7 @@ import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'stop/:stopId', component: StopDetailsPageComponent },
+  { path: 'stop/:atcoCode', component: StopDetailsPageComponent },
   { path: 'journey/:journeyId', component: MapPageComponent }
 ];
 

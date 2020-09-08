@@ -1,5 +1,7 @@
-import { StopsService } from './../services/stops.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Stop } from '../models/Stop';
+import { StopsService } from './../services/stops.service';
 import { DepartureInformation } from './models/DepartureInformation';
 
 @Component({
@@ -10,14 +12,22 @@ import { DepartureInformation } from './models/DepartureInformation';
 export class StopDetailsPageComponent implements OnInit {
 
   departures: DepartureInformation[] = [];
+  stop: Stop;
 
   constructor(
-    private readonly stopsService: StopsService
+    private readonly stopsService: StopsService,
+    private readonly route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
-    this.stopsService.getStopDepartures('36238749').subscribe(departrues => {
-      this.departures = departrues;
+    this.route.paramMap.subscribe(params => {
+      const atcoCode = params.get('atcoCode');
+      this.stopsService.getStopByAtco(atcoCode).subscribe(stop => {
+        this.stop = stop;
+        this.stopsService.getStopDepartures(stop.stop_id).subscribe(departrues => {
+          this.departures = departrues;
+        });
+      });
     });
   }
 
