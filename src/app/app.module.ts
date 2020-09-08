@@ -13,6 +13,7 @@ import { StopFilterPipe } from './homepage/pipes/stop-filter.pipe';
 import { MapPageComponent } from './map-page/map-page.component';
 import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
 import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
+import { DestinationsOutputPipe } from './homepage/pipes/destinations-output.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.
     StopDetailsPageComponent,
     DepartureDetailsComponent,
     MapPageComponent,
-    StopFilterPipe
+    StopFilterPipe,
+    DestinationsOutputPipe
   ],
   imports: [
     BrowserModule,
