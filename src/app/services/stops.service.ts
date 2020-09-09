@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter, map, pluck } from 'rxjs/operators';
+import { Observable, interval } from 'rxjs';
+import { filter, map, pluck, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DepartureInformation } from '../stop-details-page/models/DepartureInformation';
 import { Stop } from './../models/Stop';
@@ -69,6 +69,12 @@ export class StopsService {
 
         return response;
       })
+    );
+  }
+
+  listenForDepartureUpdates(stopId: string): Observable<DepartureInformation[]> {
+    return interval(3000).pipe(
+      switchMap(() => this.getStopDepartures(stopId)),
     );
   }
 
