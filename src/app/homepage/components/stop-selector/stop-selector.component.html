@@ -5,21 +5,23 @@
     </header>
     <section class="p-2">
         <label class="sr-only" for="stop-search">Search for a stop by name</label>
-        <input
+        <div
             autofocus="true"
             autocomplete="off"
             placeholder="Some stop value"
             type="text"
             name="stop-search"
             id="stop-search"
-            class="p-4 rounded-sm text-lg bg-gray-200 border-4 border-green-900 w-full"
-            [(ngModel)]="stopInput"
-            >
+            class="flex rounded-sm text-lg bg-gray-200 border-4 border-green-900 w-full"
+        >
+            <input type="text" name="" id="" class="p-4 flex-grow bg-gray-200 focus:bg-white" [(ngModel)]="stopInput">
+            <button class="py-4 px-6 border-l-4 border-green-900 bg-green-900" (click)="locateUser()">{{ locateButtonIcon }}</button>
+        </div>
         <button class="btn btn-secondary btn-s w-full mt-1">🎲 Pick randomly</button>
         <ul class="w-full mt-2">
             <li class="border-b truncate overflow py-2 hover:bg-gray-100 focus:bg-gray-100 grid grid-cols-6 grid-rows-1"
                 [routerLink]="['stop', stop.stop_id]" 
-                *ngFor="let stop of stops | stopFilter:stopInput | slice:0:10 ; let i=index">
+                *ngFor="let stop of stops | stopFilter:stopInput:usingGeolocation | slice:0:10 ; let i=index">
                 <div class="row-span-2 col-span-1 flex justify-center items-center">🚌</div>
                 <span class="mr-2 row-span-1 col-start-2 colspan-4">{{ stop.name }}</span>
                 <small class="row-span-1 col-start-2 colspan-4">Towards {{ stop.destinations | destinationsOutput }}</small>

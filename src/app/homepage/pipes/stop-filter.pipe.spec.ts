@@ -7,7 +7,7 @@ describe('StopFilterPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('should return stops with a name containing a given string', () => {
+  it('should return stops with a name containing a given string (when not using geolocation)', () => {
     const pipe = new StopFilterPipe();
     const stops = [
       {
@@ -24,7 +24,7 @@ describe('StopFilterPipe', () => {
       }
     ] as any[] as Stop[];
 
-    const result = pipe.transform(stops, 'at');
+    const result = pipe.transform(stops, 'at', false);
 
     expect(result).toEqual(jasmine.arrayContaining([
       {
@@ -32,6 +32,41 @@ describe('StopFilterPipe', () => {
       },
       {
         name: 'rat'
+      }
+    ]));
+  });
+
+  it('should return exact stops given when using geolocation', () => {
+    const pipe = new StopFilterPipe();
+    const stops = [
+      {
+        name: 'cat'
+      },
+      {
+        name: 'rat'
+      },
+      {
+        name: 'car'
+      },
+      {
+        name: 'far'
+      }
+    ] as any[] as Stop[];
+
+    const result = pipe.transform(stops, 'Current Location', true);
+
+    expect(result).toEqual(jasmine.arrayContaining([
+      {
+        name: 'cat'
+      },
+      {
+        name: 'rat'
+      },
+      {
+        name: 'car'
+      },
+      {
+        name: 'far'
       }
     ]));
   });

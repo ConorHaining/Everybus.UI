@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as sortByDistance from 'sort-by-distance';
 import { Stop } from './../../../models/Stop';
 import { StopsService } from './../../../services/stops.service';
 
@@ -12,6 +13,9 @@ export class StopSelectorComponent implements OnInit {
   stops: Stop[] = [];
   stopInput = '';
 
+  locateButtonIcon = '📍';
+  usingGeolocation = false;
+
   constructor(
     private readonly stopsService: StopsService
   ) { }
@@ -20,6 +24,29 @@ export class StopSelectorComponent implements OnInit {
     this.stopsService.getAllStops().subscribe(stops => {
       this.stops = stops;
     });
+  }
+
+  locateUser() {
+    this.locateButtonIcon = '⌛';
+    window.navigator.geolocation
+      .getCurrentPosition(
+        success => {
+          this.locateButtonIcon = '📍';
+
+          const currentCoordinates = success.coords;
+          const opts = {
+            yName: 'latitude',
+            xName: 'longitude'
+          };
+          this.stops = sortByDistance(currentCoordinates, this.stops, opts);
+          this.stopInput = 'Current Location';
+          this.usingGeolocation = true;
+
+        },
+        error => {
+          this.locateButtonIcon = '❌';
+          console.error(error);
+        });
   }
 
 }
