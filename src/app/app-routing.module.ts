@@ -16,7 +16,7 @@ const routes: Routes = [
       stop: StopResolver
     }
   },
-  { path: 'journey/:journeyId', component: MapPageComponent }
+  { path: 'vehicle/:vehicleId', component: MapPageComponent }
 ];
 
 @NgModule({

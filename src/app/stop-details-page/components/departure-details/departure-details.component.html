@@ -22,7 +22,7 @@
             <li *ngFor="let departure of departure.departures" class="flex justify-between items-center py-2">
                 <div class="flex-grow">{{ departure.destination }}</div>
                 <div class="px-2">{{ departure.departureTime | relativeTime }}</div>
-                <button class="btn btn-xs btn-outline" routerLink="/journey/1234">🗺️</button>
+                <button class="btn btn-xs btn-outline" [routerLink]="['/vehicle', departure.vehicleId]">🗺️</button>
             </li>
         </ul>
     </div>
