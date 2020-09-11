@@ -1,4 +1,28 @@
 <main class="m-2">
     <button class="btn btn-s btn-secondary w-full" routerLink="/stop/123">◀️ Go back</button>
-    <iframe src="https://everybus.azurewebsites.net/" frameborder="0" class="w-full mt-2" height="350"></iframe>
+    <iframe src="https://everybus.azurewebsites.net/" frameborder="0" class="w-full mt-2" height="250"></iframe>
+
+    <div class="mt-2 p-2 bg-white shadow-md grid">
+        <div class="col-start-1 row-start-1 flex justify-center items-center">
+            <span class="py-1 px-4 rounded-sm text-3xl bus-route-number" [style.backgroundColor]="'#5668af'" [style.color]="'#FFFFFF'">4</span>
+        </div>
+        <div class="col-span-3 row-span-1 col-start-2 row-start-1 flex items-center">
+            <h1 class="text-2xl">The Jewel</h1>
+        </div>
+        <div class="col-start-1 row-start-2 row-end-2 col-end-2">
+            <strong>Next: </strong>
+        </div>
+        <div class="col-span-3 row-span-1 col-start-2 row-start-2">
+            <div class="grid grid-cols-2 grid-rows-4" style="grid-template-columns: repeat(2, 30px 1fr);">
+                <div style="background: url('assets/icons/path4706.png'); background-size: 1em; background-position: center; background-repeat: no-repeat;" class="col-start-1 row-span-1"></div>
+                <div style="background: url('assets/icons/path4706.png'); background-size: 1em; background-position: center; background-repeat: no-repeat;" class="col-start-1 row-span-1"></div>
+                <div style="background: url('assets/icons/path4706.png'); background-size: 1em; background-position: center; background-repeat: no-repeat;" class="col-start-1 row-span-1"></div>
+                <div style="background: url('assets/icons/path4706.png'); background-size: 1em; background-position: center; background-repeat: no-repeat;" class="col-start-1 row-span-1"></div>
+                <div class="col-start-2 row-start-1 row-span-1">Stop 1</div>
+                <div class="col-start-2 row-start-2 row-span-1">Stop 2</div>
+                <div class="col-start-2 row-start-3 row-span-1">Stop 3</div>
+                <div class="col-start-2 row-start-4 row-span-1">Stop 4</div>
+            </div>
+        </div>
+    </div>
 </main>
