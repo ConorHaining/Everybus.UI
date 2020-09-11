@@ -17,6 +17,8 @@ import { DestinationsOutputPipe } from './homepage/pipes/destinations-output.pip
 import { RelativeTimePipe } from './stop-details-page/pipes/relative-time.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
