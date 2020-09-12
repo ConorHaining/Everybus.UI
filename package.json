@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:lighthouse": "ng serve",
-    "build": "NODE_ENV=production ng serve --prod",
+    "build": "NODE_ENV=production ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
