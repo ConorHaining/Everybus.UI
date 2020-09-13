@@ -9,7 +9,9 @@ import * as utc from 'dayjs/plugin/utc';
 })
 export class RelativeTimePipe implements PipeTransform {
   constructor() {
-    dayjs.extend(relativeTime);
+    dayjs.extend(relativeTime, {
+      rounding: Math.floor
+    });
     dayjs.extend(utc);
   }
 
