@@ -14,8 +14,6 @@ export class StopSelectorComponent implements OnInit {
   stopInput = '';
 
   locateButtonIcon = '📍';
-  usingGeolocation = false;
-
   constructor(
     private readonly stopsService: StopsService
   ) { }
@@ -26,7 +24,7 @@ export class StopSelectorComponent implements OnInit {
     });
   }
 
-  locateUser() {
+  locateUser(): void {
     this.locateButtonIcon = '⌛';
     window.navigator.geolocation
       .getCurrentPosition(
@@ -39,8 +37,7 @@ export class StopSelectorComponent implements OnInit {
             xName: 'longitude'
           };
           this.stops = sortByDistance(currentCoordinates, this.stops, opts);
-          this.stopInput = 'Current Location';
-          this.usingGeolocation = true;
+          this.stopInput = '';
 
         },
         error => {
