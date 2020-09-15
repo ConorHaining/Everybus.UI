@@ -7,4 +7,5 @@ export interface Stop {
     latitude: string;
     longitude: string;
     destinations: string[];
+    distance?: number;
 }
