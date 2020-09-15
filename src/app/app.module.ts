@@ -15,7 +15,9 @@ import { StopFilterPipe } from './homepage/pipes/stop-filter.pipe';
 import { MapPageComponent } from './map-page/map-page.component';
 import { DepartureDetailsComponent } from './stop-details-page/components/departure-details/departure-details.component';
 import { RelativeTimePipe } from './stop-details-page/pipes/relative-time.pipe';
-import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
