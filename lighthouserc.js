@@ -6,7 +6,7 @@ module.exports = {
             maxWaitForLoad: 5000,
             url: [
                 'http://localhost',
-                'http://localhost/stop/6200200010',
+                'http://localhost/stop/36232897',
                 'http://localhost/vehicle/921',
             ]
         },
