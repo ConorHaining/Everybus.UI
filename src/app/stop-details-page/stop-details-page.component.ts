@@ -14,7 +14,7 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
 
   departures: DepartureInformation[] = [];
   stop: Stop;
-  stopId: string;
+  atcoCode: string;
   private stopDepartureListener$: Subscription;
 
   constructor(
@@ -23,11 +23,11 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.stopId = this.route.snapshot.params.stopId;
+    this.atcoCode = this.route.snapshot.params.atcoCode;
     this.stop = this.route.snapshot.data.stop;
     this.departures = this.route.snapshot.data.departures;
 
-    this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(this.stopId)
+    this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(this.atcoCode)
       .subscribe(
         (departure: DepartureInformation[]) => {
           this.departures = departure;

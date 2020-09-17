@@ -9,7 +9,7 @@ import { StopDetailsPageComponent } from './stop-details-page/stop-details-page.
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   {
-    path: 'stop/:stopId',
+    path: 'stop/:atcoCode',
     component: StopDetailsPageComponent,
     resolve: {
       departures: DeparturesResolver,

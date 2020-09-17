@@ -1,6 +1,6 @@
 export interface DepartureInformation {
     routeName: string;
-    backgroundColour: string;
+    routeColour: string;
     textColour: string;
 
     departures: Departure[];

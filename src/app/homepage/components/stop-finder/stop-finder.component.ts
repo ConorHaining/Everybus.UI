@@ -55,7 +55,7 @@ export class StopFinderComponent implements OnInit {
     const index = Math.floor(Math.random() * this.stops.length);
     const stop = this.stops[index];
 
-    this.router.navigate(['stop', stop.stop_id]);
+    this.router.navigate(['stop', stop.atco_code]);
   }
 
   togglePicker(): void {
