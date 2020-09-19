@@ -14,6 +14,6 @@ export class DeparturesResolver implements Resolve<Observable<DepartureInformati
   ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<DepartureInformation[]> {
-    return this.stopsService.getStopDepartures(route.paramMap.get('stopId'));
+    return this.stopsService.getStopDepartures(route.paramMap.get('atcoCode'));
   }
 }

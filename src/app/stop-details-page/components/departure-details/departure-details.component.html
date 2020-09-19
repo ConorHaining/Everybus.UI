@@ -1,7 +1,7 @@
 <div class="mt-2 px-2 bg-white shadow-md">
     <div class="grid grid-rows-2 grid-cols-6 gap-x-2 py-4" (click)="toggleDepartures()">
         <div class="col-span-1 row-span-2 flex justify-center items-center">
-            <span class="py-1 px-4 rounded-sm font-semibold text-xl bus-route-number" [style.backgroundColor]="departure.backgroundColour" [style.color]="departure.textColour">{{ departure.routeName }}</span>
+            <span class="py-1 px-4 rounded-sm font-semibold text-xl bus-route-number" [style.backgroundColor]="departure.routeColour" [style.color]="departure.textColour">{{ departure.routeName }}</span>
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-end">
             <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.departureTime | relativeTime }}
