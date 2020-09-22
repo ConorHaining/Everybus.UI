@@ -1,37 +1,34 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
+import * as relativeTime from 'dayjs/plugin/relativeTime';
+import * as utc from 'dayjs/plugin/utc';
+
 
 @Pipe({
   name: 'relativeTime'
 })
 export class RelativeTimePipe implements PipeTransform {
   constructor() {
-    moment.updateLocale('en', {
-      relativeTime: {
-        future: 'in %s',
-        past: '%s ago',
-        s: 'a few seconds',
-        ss: '%d seconds',
-        m: 'a minute',
-        mm: '%d mins',
-        h: 'an hour',
-        hh: '%d hours',
-      }
+    dayjs.extend(relativeTime, {
+      rounding: Math.floor
     });
+    dayjs.extend(utc);
   }
 
   transform(timestamp: string): string {
-    const utc = moment.utc(timestamp);
-    const local = utc.local(true);
-    const difference = local.diff(moment(), 'minute', true);
-    if (difference <= 1) {
-      return 'Now';
-    } else if (difference >= 45) {
-      return local.format('HH:mm');
-    } else {
-      return local.fromNow();
-    }
-
+    return transform(timestamp);
   }
 
+}
+
+export function transform(timestamp: string): string {
+  const time = dayjs.utc(timestamp).subtract(1, 'hour');
+  const difference = Math.abs(dayjs.utc().diff(time, 'minute'));
+  if (difference < 2) {
+    return 'Due';
+  }  else if (difference > 45) {
+    return time.format('HH:mm');
+  } else {
+    return time.fromNow();
+  }
 }
