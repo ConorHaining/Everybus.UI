@@ -7,7 +7,7 @@ export const environment = {
 
   tfeOpenDataUrls: {
     stops: 'http://tfe-opendata.com/api/v1/stops',
-    liveTimes: 'http://tfe-opendata.com/api/v1/live_bus_times/{stop_id}',
+    liveTimes: 'https://everybus.azurewebsites.net/api/departures/{atco_code}',
     route: 'https://tfeapp.com/api/website/route.php?service_name={route_name}'
   }
 };
