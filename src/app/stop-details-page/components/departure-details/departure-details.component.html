@@ -4,7 +4,9 @@
             <span class="py-1 px-4 rounded-sm font-semibold text-xl bus-route-number" [style.backgroundColor]="departure.routeColour" [style.color]="departure.textColour">{{ departure.routeName }}</span>
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-end">
-            <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.departureTime | relativeTime }}
+            <span class="truncate">
+                <strong>Next:&nbsp;</strong> {{ departure?.departures[0]?.departureTime | relativeTime }}
+            </span>
         </div>
         <div class="col-start-2 col-end-6 row-span-1 flex justify-start items-start">
             <span class="truncate">
@@ -12,8 +14,8 @@
             </span>
         </div>
         <div class="col-start-6 col-end-7 row-start-1 row-span-2 flex justify-center items-center">
-            <span *ngIf="!showDepartures">🔼</span>
-            <span *ngIf="showDepartures">🔽</span>
+            <button *ngIf="!showDepartures">🔼</button>
+            <button *ngIf="showDepartures">🔽</button>
         </div>
     </div>
 

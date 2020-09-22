@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Stop } from '../models/Stop';
 import { StopsService } from './../services/stops.service';
 import { DepartureInformation } from './models/DepartureInformation';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'stop-details-page',
@@ -12,9 +13,12 @@ import { DepartureInformation } from './models/DepartureInformation';
 })
 export class StopDetailsPageComponent implements OnInit, OnDestroy {
 
-  departures: DepartureInformation[] = [];
+  departures: DepartureInformation[] = [].fill(5);
   stop: Stop;
   atcoCode: string;
+
+  isLoading = true;
+
   private stopDepartureListener$: Subscription;
 
   constructor(
@@ -23,18 +27,22 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.atcoCode = this.route.snapshot.params.atcoCode;
+    for (let i = 0; i < 5; i++) {
+      const info: DepartureInformation = {
+        routeColour: '#000000',
+        textColour: '#FFFFFF',
+        routeName: 'XX',
+        departures: []
+      };
+      this.departures.push(info);
+    }
     this.stop = this.route.snapshot.data.stop;
-    this.departures = this.route.snapshot.data.departures;
 
-    this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(this.atcoCode)
-      .subscribe(
-        (departure: DepartureInformation[]) => {
-          this.departures = departure;
-        },
-        (error) => {
-          console.error(error);
-        });
+    this.route.paramMap.pipe(
+      map(params => params.get('atcoCode')),
+      switchMap(atcoCode => this.stopsService.getStopDepartures(atcoCode))
+    ).subscribe(departures => { this.departures = departures; this.isLoading = false; });
+
   }
 
   ngOnDestroy(): void {
