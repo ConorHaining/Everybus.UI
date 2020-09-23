@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RelativeTimePipe } from './../../pipes/relative-time.pipe';
+import { RelativeTimePipe } from '../../../pipes/relative-time.pipe';
 
 import { DepartureDetailsComponent } from './departure-details.component';
 

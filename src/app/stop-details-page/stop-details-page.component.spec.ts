@@ -5,7 +5,7 @@ import { of, from } from 'rxjs';
 import { DestinationsOutputPipe } from '../homepage/pipes/destinations-output.pipe';
 import { StopsService } from '../services/stops.service';
 import { DepartureDetailsComponent } from './components/departure-details/departure-details.component';
-import { RelativeTimePipe } from './pipes/relative-time.pipe';
+import { RelativeTimePipe } from '../pipes/relative-time.pipe';
 import { StopDetailsPageComponent } from './stop-details-page.component';
 
 describe('StopDetailsPageComponent', () => {

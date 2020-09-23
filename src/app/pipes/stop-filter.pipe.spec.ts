@@ -1,4 +1,4 @@
-import { Stop } from './../../models/Stop';
+import { Stop } from 'src/app/models/Stop';
 import { StopFilterPipe } from './stop-filter.pipe';
 
 describe('StopFilterPipe', () => {
