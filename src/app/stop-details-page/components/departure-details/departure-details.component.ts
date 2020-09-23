@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash-es/cloneDeep';
 import { interval } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Departure, DepartureInformation } from '../../models/DepartureInformation';

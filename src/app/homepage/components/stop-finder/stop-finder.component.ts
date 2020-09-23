@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as sortByDistance from 'sort-by-distance';
 import { Stop } from 'src/app/models/Stop';
 import { StopsService } from 'src/app/services/stops.service';
 
@@ -30,25 +29,25 @@ export class StopFinderComponent implements OnInit {
   }
 
   locateUser(): void {
-    this.locateButtonIcon = '⌛';
-    window.navigator.geolocation
-      .getCurrentPosition(
-        success => {
-          this.locateButtonIcon = '📍';
+    // this.locateButtonIcon = '⌛';
+    // window.navigator.geolocation
+    //   .getCurrentPosition(
+    //     success => {
+    //       this.locateButtonIcon = '📍';
 
-          const currentCoordinates = success.coords;
-          const opts = {
-            yName: 'latitude',
-            xName: 'longitude'
-          };
-          this.stops = sortByDistance(currentCoordinates, this.stops, opts);
-          this.stopInput = '';
+    //       const currentCoordinates = success.coords;
+    //       const opts = {
+    //         yName: 'latitude',
+    //         xName: 'longitude'
+    //       };
+    //       this.stops = sortByDistance(currentCoordinates, this.stops, opts);
+    //       this.stopInput = '';
 
-        },
-        error => {
-          this.locateButtonIcon = '❌';
-          console.error(error);
-        });
+    //     },
+    //     error => {
+    //       this.locateButtonIcon = '❌';
+    //       console.error(error);
+    //     });
   }
 
   pickRandom(): void {
