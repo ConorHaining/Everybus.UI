@@ -7,7 +7,8 @@ import { MapPageComponent } from './map-page.component';
 const routes: Routes = [
   {
     path: ':vehicleId',
-    component: MapPageComponent
+    component: MapPageComponent,
+    pathMatch: 'full',
   }
 ];
 
