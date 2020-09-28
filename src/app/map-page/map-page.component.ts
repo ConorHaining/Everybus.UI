@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, tileLayer, MapOptions, circle, polygon, LatLng } from 'leaflet';
+import { circle, latLng, LatLng, MapOptions, polygon, tileLayer } from 'leaflet';
 
 @Component({
   selector: 'map-page',

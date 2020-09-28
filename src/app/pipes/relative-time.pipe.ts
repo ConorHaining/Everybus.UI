@@ -24,8 +24,10 @@ export class RelativeTimePipe implements PipeTransform {
 export function transform(timestamp: string): string {
   const time = dayjs.utc(timestamp).subtract(1, 'hour');
   const difference = Math.abs(dayjs.utc().diff(time, 'minute'));
-  if (difference < 2) {
-    return 'Due';
+  if (difference < 0){
+    return 'Departed';
+  } else if (difference < 2) {
+    return 'Very soon';
   }  else if (difference > 45) {
     return time.format('HH:mm');
   } else {
