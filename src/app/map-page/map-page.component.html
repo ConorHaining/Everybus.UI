@@ -2,8 +2,9 @@
     <button class="btn btn-s btn-secondary w-full" routerLink="/stop/123">◀️ Go back</button>
 
     <div class="mt-2" style="height: 200px;" 
-        leaflet [leafletOptions]="options"
-        [(leafletCenter)]="center"
+        leaflet 
+        [leafletOptions]="options"
+        [leafletLayer]="vehicleLayer"
         >
     </div>
 
