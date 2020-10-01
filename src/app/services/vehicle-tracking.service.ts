@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GeoJSON } from 'leaflet';
 import { Observable, timer } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';

@@ -13,11 +13,11 @@
 
     <div class="mx-5 p-2 bg-white shadow-md flex items-center" style="position: relative; top: -35px; z-index: 500;">
         <div>
-            <span class="py-1 px-4 rounded-sm text-3xl bus-route-number" [style.backgroundColor]="'#5668af'"
-                [style.color]="'#FFFFFF'">4</span>
+            <span class="py-1 px-4 rounded-sm text-3xl bus-route-number" [style.backgroundColor]="vehicle.properties.colour"
+                [style.color]="vehicle.properties.text_colour">{{ vehicle.properties.name }}</span>
         </div>
         <div>
-            <h1 class="text-2xl ml-4">The Jewel</h1>
+            <h1 class="text-2xl ml-4">{{ vehicle.properties.destination }}</h1>
         </div>
     </div>
     <div class="grid grid-cols-3 grid-rows-4 items-center bg-white shadow-md p-2" style="grid-template-columns: 0.5fr 30px 1fr .5fr; grid-template-rows: repeat(4, 1.5fr);">
