@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { geoJSON, GeoJSON, latLng, LatLng, MapOptions, tileLayer } from 'leaflet';
+import { divIcon, geoJSON, GeoJSON, GeoJSONOptions, icon, latLng, LatLng, MapOptions, marker, tileLayer } from 'leaflet';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { VehicleTrackingService } from './../services/vehicle-tracking.service';
@@ -43,7 +43,24 @@ export class MapPageComponent implements OnInit, OnDestroy {
     this.vehicleUpdates = this.vehicleTracking.pollForAllVehicleLocations().subscribe(vehicleLocations => {
       this.vehicle = Array.from(vehicleLocations.features).find((x: any) => x.properties.vehicleId === this.vehicleId);
       this.center = latLng(this.vehicle.geometry.coordinates[1], this.vehicle.geometry.coordinates[0]);
-      const parsedGeoJson = geoJSON(this.vehicle);
+
+      const geoJsonOptions: GeoJSONOptions = {
+        pointToLayer: (geoJsonPoint, latlng) => {
+          return marker(latlng, {
+            icon: divIcon({
+              html: `
+              <div class="bus">
+                  <span style="color: ${geoJsonPoint.properties.text_colour};">${geoJsonPoint.properties.name}</span>
+                  <div class="arrow_box" style="background-color: ${geoJsonPoint.properties.colour}; 
+                                                border: 0 solid ${geoJsonPoint.properties.colour};
+                                                transform: rotate(${geoJsonPoint.properties.heading}deg);"></div>
+              </div>
+              `
+            })
+          });
+        }
+      };
+      const parsedGeoJson = geoJSON(this.vehicle, geoJsonOptions);
       this.vehicleLayer = parsedGeoJson;
     });
   }
