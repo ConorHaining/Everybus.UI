@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { StopsService } from 'src/app/services/stops.service';
+import { VehicleTrackingService } from './vehicle-tracking.service';
 
 
 
@@ -11,7 +12,8 @@ import { StopsService } from 'src/app/services/stops.service';
     HttpClientModule
   ],
   providers: [
-    StopsService
+    StopsService,
+    VehicleTrackingService
   ]
 })
 export class ServicesModule { }

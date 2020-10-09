@@ -6,10 +6,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConnectedIndicatorComponent } from './homepage/components/connected-indicator/connected-indicator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConnectedIndicatorComponent
   ],
   imports: [
     AppRoutingModule,

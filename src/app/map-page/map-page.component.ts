@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { circle, latLng, LatLng, MapOptions, polygon, tileLayer } from 'leaflet';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { divIcon, geoJSON, GeoJSON, GeoJSONOptions, icon, latLng, LatLng, MapOptions, marker, tileLayer } from 'leaflet';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { VehicleTrackingService } from './../services/vehicle-tracking.service';
 
 @Component({
   selector: 'map-page',
   templateUrl: './map-page.component.html',
   styleUrls: ['./map-page.component.scss']
 })
-export class MapPageComponent implements OnInit {
+export class MapPageComponent implements OnInit, OnDestroy {
 
-  center: LatLng;
   options: MapOptions = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -16,31 +19,54 @@ export class MapPageComponent implements OnInit {
       })
     ],
     zoom: 14,
-    center: this.center,
+    center: latLng(55.949680, -3.204165),
     zoomControl: false
   };
+  center: LatLng = latLng(55.949680, -3.204165);
 
-  layersControl = {
-    baseLayers: {
-      'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
-      'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
-    },
-    overlays: {
-      'Big Circle': circle([ 46.95, -122 ], { radius: 5000 }),
-      'Big Square': polygon([[ 46.8, -121.55 ], [ 46.9, -121.55 ], [ 46.9, -121.7 ], [ 46.8, -121.7 ]])
-    }
-  };
+  vehicle: any;
+  vehicleLayer: GeoJSON;
+  vehicleId: string;
+  private vehicleUpdates: Subscription;
 
-  constructor() { }
+  constructor(
+    private readonly vehicleTracking: VehicleTrackingService,
+    private readonly route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    this.center = latLng(55.949680, -3.204165);
 
-    setInterval(() => {
-      const lat = this.center.lat + 0.0001;
-      const lng = this.center.lng + 0.0001;
-      this.center = latLng(lat, lng);
-    }, 500);
+    this.route.paramMap.pipe(
+      map(params => params.get('vehicleId'))
+    ).subscribe(vehicleId => { this.vehicleId = vehicleId; });
+
+    this.vehicleUpdates = this.vehicleTracking.pollForAllVehicleLocations().subscribe(vehicleLocations => {
+      this.vehicle = Array.from(vehicleLocations.features).find((x: any) => x.properties.vehicleId === this.vehicleId);
+      this.center = latLng(this.vehicle.geometry.coordinates[1], this.vehicle.geometry.coordinates[0]);
+
+      const geoJsonOptions: GeoJSONOptions = {
+        pointToLayer: (geoJsonPoint, latlng) => {
+          return marker(latlng, {
+            icon: divIcon({
+              html: `
+              <div class="bus">
+                  <span style="color: ${geoJsonPoint.properties.text_colour};">${geoJsonPoint.properties.name}</span>
+                  <div class="arrow_box" style="background-color: ${geoJsonPoint.properties.colour}; 
+                                                border: 0 solid ${geoJsonPoint.properties.colour};
+                                                transform: rotate(${geoJsonPoint.properties.heading}deg);"></div>
+              </div>
+              `
+            })
+          });
+        }
+      };
+      const parsedGeoJson = geoJSON(this.vehicle, geoJsonOptions);
+      this.vehicleLayer = parsedGeoJson;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.vehicleUpdates.unsubscribe();
   }
 
 }
