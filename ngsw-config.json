@@ -26,5 +26,17 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "ReferenceData",
+      "urls": [
+        "**/stops"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "7d"
+      }
+    }
   ]
 }
