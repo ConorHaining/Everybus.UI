@@ -58,7 +58,7 @@ export class StopsService {
   }
 
   listenForDepartureUpdates(atcoCode: string): Observable<DepartureInformation[]> {
-    return interval(3000).pipe(
+    return interval(10000).pipe(
       switchMap(() => this.getStopDepartures(atcoCode)),
     );
   }
