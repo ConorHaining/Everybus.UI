@@ -5,6 +5,7 @@ import { Stop } from '../models/Stop';
 import { StopsService } from './../services/stops.service';
 import { DepartureInformation } from './models/DepartureInformation';
 import { map, switchMap } from 'rxjs/operators';
+import { ConnectionStatus } from '../homepage/components/connected-indicator/connected-indicator.component';
 
 @Component({
   selector: 'stop-details-page',
@@ -12,6 +13,10 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./stop-details-page.component.scss']
 })
 export class StopDetailsPageComponent implements OnInit, OnDestroy {
+  status: ConnectionStatus = ConnectionStatus.LIVE;
+  get isOffline(): boolean {
+    return this.status === ConnectionStatus.OFFLINE;
+  }
 
   departures: DepartureInformation[] = [].fill(5);
   stop: Stop;
@@ -27,15 +32,7 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 5; i++) {
-      const info: DepartureInformation = {
-        routeColour: '#000000',
-        textColour: '#FFFFFF',
-        routeName: 'XX',
-        departures: []
-      };
-      this.departures.push(info);
-    }
+    this.createLoadingData();
     this.stop = this.route.snapshot.data.stop;
 
     this.route.paramMap.pipe(
@@ -51,6 +48,18 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
       this.isLoading = false;
     });
 
+    window.addEventListener('offline', this.updateNetworkStatus.bind(this));
+    window.addEventListener('online', this.updateNetworkStatus.bind(this));
+
+  }
+
+  updateNetworkStatus($event: Event): void {
+    if ($event.type === 'online') {
+      this.status = ConnectionStatus.LIVE;
+    }
+    if ($event.type === 'offline') {
+      this.status = ConnectionStatus.OFFLINE;
+    }
   }
 
   ngOnDestroy(): void {
@@ -61,6 +70,19 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
 
   trackByFn(index: number, item: DepartureInformation): string {
     return item.routeName;
+  }
+  
+
+  private createLoadingData(): void {
+    for (let i = 0; i < 5; i++) {
+      const info: DepartureInformation = {
+        routeColour: '#000000',
+        textColour: '#FFFFFF',
+        routeName: 'XX',
+        departures: []
+      };
+      this.departures.push(info);
+    }
   }
 
 }
