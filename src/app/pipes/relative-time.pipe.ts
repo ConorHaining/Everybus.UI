@@ -1,8 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as dayjs from 'dayjs';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
-import * as utc from 'dayjs/plugin/timezone';
-import * as timezone from 'dayjs/plugin/utc';
 
 
 @Pipe({
@@ -13,8 +11,6 @@ export class RelativeTimePipe implements PipeTransform {
     dayjs.extend(relativeTime, {
       rounding: Math.floor
     });
-    dayjs.extend(utc);
-    dayjs.extend(timezone);
   }
 
   transform(timestamp: string): string {
@@ -25,8 +21,8 @@ export class RelativeTimePipe implements PipeTransform {
 
 export function transform(timestamp: string): string {
   if (timestamp === null) { return; }
-  const time = dayjs.tz(timestamp, 'Europe/London');
-  const difference = Math.abs(dayjs.utc().diff(time, 'minute'));
+  const time = dayjs(timestamp);
+  const difference = Math.abs(dayjs().diff(time, 'minute'));
   if (difference < 0){
     return 'Departed';
   } else if (difference < 2) {
