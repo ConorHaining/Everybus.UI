@@ -37,6 +37,18 @@
         "maxSize": 1,
         "maxAge": "7d"
       }
+    },
+    {
+      "name": "Departures",
+      "urls": [
+        "**/departures/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "1h",
+        "timeout": "2s",
+        "strategy": "freshness"
+      }
     }
   ]
 }

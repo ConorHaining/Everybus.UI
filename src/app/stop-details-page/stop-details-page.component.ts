@@ -40,8 +40,16 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
 
     this.route.paramMap.pipe(
       map(params => params.get('atcoCode')),
-      switchMap(atcoCode => this.stopsService.getStopDepartures(atcoCode))
-    ).subscribe(departures => { this.departures = departures; this.isLoading = false; });
+      switchMap(atcoCode => {
+        this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(atcoCode).subscribe(departures => {
+          this.departures = departures;
+          this.isLoading = false;
+        });
+        return this.stopsService.getStopDepartures(atcoCode);
+    })).subscribe(departures => {
+      this.departures = departures;
+      this.isLoading = false;
+    });
 
   }
 
