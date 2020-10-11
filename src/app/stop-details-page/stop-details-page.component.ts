@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { ConnectionStatus } from '../homepage/components/connected-indicator/connected-indicator.component';
 import { Stop } from '../models/Stop';
 import { StopsService } from './../services/stops.service';
 import { DepartureInformation } from './models/DepartureInformation';
-import { map, switchMap } from 'rxjs/operators';
-import { ConnectionStatus } from '../homepage/components/connected-indicator/connected-indicator.component';
 
 @Component({
   selector: 'stop-details-page',
@@ -23,6 +23,7 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   atcoCode: string;
 
   isLoading = true;
+  isError = false;
 
   private stopDepartureListener$: Subscription;
 
@@ -38,14 +39,16 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
     this.route.paramMap.pipe(
       map(params => params.get('atcoCode')),
       switchMap(atcoCode => {
-        this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(atcoCode).subscribe(departures => {
-          this.departures = departures;
-          this.isLoading = false;
-        });
+        this.atcoCode = atcoCode;
+        this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(atcoCode)
+                                          .subscribe({
+                                            complete: this.updateDepartures.bind(this),
+                                            error: this.departureError.bind(this)
+                                          });
         return this.stopsService.getStopDepartures(atcoCode);
-    })).subscribe(departures => {
-      this.departures = departures;
-      this.isLoading = false;
+    })).subscribe({
+      complete: this.updateDepartures.bind(this),
+      error: this.departureError.bind(this)
     });
 
     window.addEventListener('offline', this.updateNetworkStatus.bind(this));
@@ -71,7 +74,21 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   trackByFn(index: number, item: DepartureInformation): string {
     return item.routeName;
   }
-  
+
+  private updateDepartures(departures: DepartureInformation[]): void {
+    this.departures = departures;
+    this.isLoading = false;
+    this.isError = false;
+  }
+
+  private departureError(error: any): void {
+    this.isError = true;
+    this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(this.atcoCode)
+                                          .subscribe({
+                                            complete: this.updateDepartures.bind(this),
+                                            error: this.departureError.bind(this)
+                                          });
+  }
 
   private createLoadingData(): void {
     for (let i = 0; i < 5; i++) {
