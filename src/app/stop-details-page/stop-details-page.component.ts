@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { PartialObserver, Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ConnectionStatus } from '../homepage/components/connected-indicator/connected-indicator.component';
 import { Stop } from '../models/Stop';
@@ -26,6 +26,10 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   isError = false;
 
   private stopDepartureListener$: Subscription;
+  private departureUpdates: PartialObserver<DepartureInformation[]> = {
+    next: this.updateDepartures.bind(this),
+    error: this.departureError.bind(this)
+  };
 
   constructor(
     private readonly stopsService: StopsService,
@@ -40,16 +44,11 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
       map(params => params.get('atcoCode')),
       switchMap(atcoCode => {
         this.atcoCode = atcoCode;
-        this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(atcoCode)
-                                          .subscribe({
-                                            complete: this.updateDepartures.bind(this),
-                                            error: this.departureError.bind(this)
-                                          });
+        this.stopDepartureListener$ = this.stopsService
+                                      .listenForDepartureUpdates(this.atcoCode)
+                                      .subscribe(this.departureUpdates);
         return this.stopsService.getStopDepartures(atcoCode);
-    })).subscribe({
-      complete: this.updateDepartures.bind(this),
-      error: this.departureError.bind(this)
-    });
+    })).subscribe(this.departureUpdates);
 
     window.addEventListener('offline', this.updateNetworkStatus.bind(this));
     window.addEventListener('online', this.updateNetworkStatus.bind(this));
@@ -83,11 +82,9 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
 
   private departureError(error: any): void {
     this.isError = true;
-    this.stopDepartureListener$ = this.stopsService.listenForDepartureUpdates(this.atcoCode)
-                                          .subscribe({
-                                            complete: this.updateDepartures.bind(this),
-                                            error: this.departureError.bind(this)
-                                          });
+    this.stopDepartureListener$ = this.stopsService
+                                      .listenForDepartureUpdates(this.atcoCode)
+                                      .subscribe(this.departureUpdates);
   }
 
   private createLoadingData(): void {
