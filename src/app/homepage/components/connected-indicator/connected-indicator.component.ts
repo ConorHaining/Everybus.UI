@@ -33,7 +33,7 @@ export class ConnectedIndicatorComponent implements OnInit {
 
 }
 
-enum ConnectionStatus {
+export enum ConnectionStatus {
   LIVE = 'LIVE',
   OFFLINE = 'OFFLINE'
 }

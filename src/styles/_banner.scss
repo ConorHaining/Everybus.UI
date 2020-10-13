@@ -1,0 +1,16 @@
+.banner
+{   
+    @apply text-sm;
+    @apply leading-none;
+    @apply p-1;
+
+    &.banner-warning {
+        @apply bg-yellow-600;
+        @apply text-gray-900;
+    }
+
+    &.banner-danger {
+        @apply bg-red-400;
+        @apply text-gray-900;
+    }
+}

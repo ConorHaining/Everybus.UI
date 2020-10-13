@@ -26,7 +26,7 @@ export class RelativeTimePipe implements PipeTransform {
 export function transform(timestamp: string): string {
   if (timestamp === null) { return; }
   const time = dayjs.tz(timestamp, 'Europe/London');
-  const difference = Math.abs(dayjs.utc().diff(time, 'minute'));
+  const difference = Math.abs(dayjs().diff(time, 'minute'));
   if (difference < 0){
     return 'Departed';
   } else if (difference < 2) {
