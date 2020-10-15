@@ -10,15 +10,6 @@ import { StopsService } from 'src/app/services/stops.service';
 })
 export class StopFinderComponent implements OnInit {
 
-  fruits = [
-    'Apples',
-    'Bananas',
-    'Cherries',
-    'Dewberries',
-    'Blueberries',
-    'Avocados',
-  ];
-
   stops: Stop[] = [];
   stopInput = '';
 
@@ -68,6 +59,10 @@ export class StopFinderComponent implements OnInit {
 
   togglePicker(): void {
     this.showPicker = !this.showPicker;
+  }
+
+  goToDepartures(atcoCode: string): void {
+    this.router.navigate(['stop', atcoCode]);
   }
 
 }

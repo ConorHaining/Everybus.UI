@@ -1,5 +1,5 @@
-import { FocusableOption, FocusOrigin } from '@angular/cdk/a11y';
-import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { FocusableOption } from '@angular/cdk/a11y';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'pl-list-item',
@@ -10,8 +10,12 @@ import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core
   }
 })
 export class ListItemComponent implements FocusableOption {
-  @Input() label: string;
-  @HostBinding('attr.aria-label') get ariaLabel(): string { return this.label; }
+  /** Sets the label for the focusable item, which could be read by a screenreader */
+  @Input() @HostBinding('attr.aria-label') label: string;
+
+  /** A unique identifer for the item which will be emitted if the user presses enter */
+  @Input() identifier?: any;
+
   disabled: boolean;
 
   constructor(private element: ElementRef) {
