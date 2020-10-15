@@ -2,6 +2,10 @@
     <button class="btn w-full" (click)="togglePicker()">🔍 Find your stop</button>
 </div>
 
+<pl-list>
+    <pl-list-item *ngFor="let fruit of fruits" [fruit]="fruit" class="focus:bg-green-900"></pl-list-item>
+</pl-list>
+
 <ng-container *ngIf="showPicker">
     <div class="absolute h-screen w-screen inset-0 bg-white">
         <header class="bg-green-200 h-20 px-4 py-2 flex items-center justify-between">

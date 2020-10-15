@@ -1,3 +1,4 @@
+import { ListModule } from './common/list/list.module';
 import { ServicesModule } from './services/services.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,8 @@ import { ConnectedIndicatorComponent } from './homepage/components/connected-ind
     HomepageModule,
     ServicesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
+    ListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

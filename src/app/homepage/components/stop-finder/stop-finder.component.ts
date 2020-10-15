@@ -10,6 +10,15 @@ import { StopsService } from 'src/app/services/stops.service';
 })
 export class StopFinderComponent implements OnInit {
 
+  fruits = [
+    'Apples',
+    'Bananas',
+    'Cherries',
+    'Dewberries',
+    'Blueberries',
+    'Avocados',
+  ];
+
   stops: Stop[] = [];
   stopInput = '';
 
