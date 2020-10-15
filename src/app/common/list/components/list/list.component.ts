@@ -5,6 +5,11 @@ import { ListItemComponent } from 'src/app/common/list/components/list-item/list
 @Component({
   selector: 'pl-list',
   template: '<ng-content></ng-content>',
+  styles: [`
+    :host {
+      display: block;
+    }
+  `],
   host: { 
     tabindex: '0',
     role: 'listbox'
@@ -21,7 +26,7 @@ export class ListComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.keyManager = new FocusKeyManager(this.items).withWrap();
+    this.keyManager = new FocusKeyManager(this.items).withWrap().withHomeAndEnd();
   }
 
 }
