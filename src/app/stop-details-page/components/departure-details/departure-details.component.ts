@@ -15,7 +15,8 @@ export class DepartureDetailsComponent {
     this.showDepartures = !this.showDepartures;
   }
 
-  trackByFn(item: Departure): string {
+  // tslint:disable-next-line: variable-name
+  trackByFn(_index: number, item: Departure): string {
     return item.tripId + transform(item.departureTime);
   }
 
