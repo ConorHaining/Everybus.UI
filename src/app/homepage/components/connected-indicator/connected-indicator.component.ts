@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'connected-indicator',
   templateUrl: './connected-indicator.component.html',
-  styleUrls: ['./connected-indicator.component.scss']
 })
 export class ConnectedIndicatorComponent implements OnInit {
   status: ConnectionStatus = ConnectionStatus.LIVE;
