@@ -1,6 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StopFinderComponent } from './../components/stop-finder/stop-finder.component';
-
 import { HomepageComponent } from './homepage.component';
 
 describe('HomepageComponent', () => {
@@ -10,14 +8,14 @@ describe('HomepageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        HomepageComponent,
-        StopFinderComponent
+        HomepageComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    TestBed.overrideComponent(HomepageComponent, { set: { template: '<div></div>' }});
     fixture = TestBed.createComponent(HomepageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
