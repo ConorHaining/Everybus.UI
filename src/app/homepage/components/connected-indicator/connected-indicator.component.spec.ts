@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConnectedIndicatorComponent, ConnectionStatus } from './connected-indicator.component';
 
-fdescribe('ConnectedIndicatorComponent', () => {
+describe('ConnectedIndicatorComponent', () => {
   let component: ConnectedIndicatorComponent;
   let fixture: ComponentFixture<ConnectedIndicatorComponent>;
 
