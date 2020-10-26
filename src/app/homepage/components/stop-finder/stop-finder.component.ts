@@ -5,8 +5,7 @@ import { StopsService } from 'src/app/services/stops.service';
 
 @Component({
   selector: 'stop-finder',
-  templateUrl: './stop-finder.component.html',
-  styleUrls: ['./stop-finder.component.scss']
+  templateUrl: './stop-finder.component.html'
 })
 export class StopFinderComponent implements OnInit {
 
@@ -19,42 +18,12 @@ export class StopFinderComponent implements OnInit {
 
   constructor(
     private readonly stopsService: StopsService,
-    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
     this.stopsService.getAllStops().subscribe(stops => {
       this.stops = stops;
     });
-  }
-
-  locateUser(): void {
-    // this.locateButtonIcon = '⌛';
-    // window.navigator.geolocation
-    //   .getCurrentPosition(
-    //     success => {
-    //       this.locateButtonIcon = '📍';
-
-    //       const currentCoordinates = success.coords;
-    //       const opts = {
-    //         yName: 'latitude',
-    //         xName: 'longitude'
-    //       };
-    //       this.stops = sortByDistance(currentCoordinates, this.stops, opts);
-    //       this.stopInput = '';
-
-    //     },
-    //     error => {
-    //       this.locateButtonIcon = '❌';
-    //       console.error(error);
-    //     });
-  }
-
-  pickRandom(): void {
-    const index = Math.floor(Math.random() * this.stops.length);
-    const stop = this.stops[index];
-
-    this.router.navigate(['stop', stop.atco_code]);
   }
 
   togglePicker(): void {
