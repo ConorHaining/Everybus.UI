@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of, from } from 'rxjs';
-import { DestinationsOutputPipe } from '../homepage/pipes/destinations-output.pipe';
+import { of } from 'rxjs';
 import { StopsService } from '../services/stops.service';
+import { PipesModule } from './../pipes/pipes.module';
 import { DepartureDetailsComponent } from './components/departure-details/departure-details.component';
-import { RelativeTimePipe } from '../pipes/relative-time.pipe';
 import { StopDetailsPageComponent } from './stop-details-page.component';
 
 describe('StopDetailsPageComponent', () => {
@@ -16,12 +15,11 @@ describe('StopDetailsPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([]),
+        PipesModule
       ],
       declarations: [
         StopDetailsPageComponent,
         DepartureDetailsComponent,
-        DestinationsOutputPipe,
-        RelativeTimePipe
       ],
       providers: [
         {
@@ -63,7 +61,7 @@ describe('StopDetailsPageComponent', () => {
     };
     component.departures = [{
       routeName: 'XX',
-      backgroundColour: '#FFFFFF',
+      routeColour: '#FFFFFF',
       textColour: '#000000',
       departures: []
     }];

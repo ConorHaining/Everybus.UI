@@ -22,7 +22,7 @@ describe('DepartureDetailsComponent', () => {
     component = fixture.componentInstance;
     component.departure = {
       routeName: 'XX',
-      backgroundColour: '#FFFFFF',
+      routeColour: '#FFFFFF',
       textColour: '#000000',
       departures: []
     };

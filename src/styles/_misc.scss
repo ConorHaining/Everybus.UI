@@ -4,8 +4,8 @@
   text-align: center;
 
   .loading & {
-    @apply bg-gray-300 !important; 
-    @apply text-gray-300 !important;
+    @apply bg-gray-300 #{!important}; 
+    @apply text-gray-300 #{!important};
     @apply animate-pulse;
   }
 }
@@ -14,8 +14,8 @@
   span,
   h1,
   h2 {
-    @apply bg-gray-300 !important; 
-    @apply text-gray-300 !important;
+    @apply bg-gray-300 #{!important}; 
+    @apply text-gray-300 #{!important};
     @apply animate-pulse;
   }
 }
