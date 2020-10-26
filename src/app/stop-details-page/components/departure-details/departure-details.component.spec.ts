@@ -1,10 +1,10 @@
-import { Departure } from './../../models/DepartureInformation';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RelativeTimePipe } from '../../../pipes/relative-time.pipe';
+import { Departure } from './../../models/DepartureInformation';
 
 import { DepartureDetailsComponent } from './departure-details.component';
 
-fdescribe('DepartureDetailsComponent', () => {
+describe('DepartureDetailsComponent', () => {
   let component: DepartureDetailsComponent;
   let fixture: ComponentFixture<DepartureDetailsComponent>;
 
