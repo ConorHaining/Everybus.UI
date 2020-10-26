@@ -1,3 +1,4 @@
+import { AutocompleteModule } from './../common/autocomplete/autocomplete.module';
 import { ListModule } from './../common/list/list.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     FormsModule,
     PipesModule,
 
-    ListModule
+    AutocompleteModule
   ]
 })
 export class HomepageModule { }

@@ -3,25 +3,43 @@
 </div>
 
 <ng-container *ngIf="showPicker">
-    <div class="absolute h-screen w-screen inset-0 bg-white">
+    <div class="absolute h-screen w-screen inset-0 bg-white" role="dialog">
         <header class="bg-green-200 h-20 px-4 py-2 flex items-center justify-between">
             <h1 class="text-3xl">Find your stop</h1>
-            <button (click)="togglePicker()">❌</button>
+            <button (click)="togglePicker()" aria-label="Close dialog">❌</button>
         </header>
         <section class="p-2">
             <label class="sr-only" for="stop-search">Search for a stop by name</label>
-            <div autofocus="true" autocomplete="off" placeholder="Some stop value" type="text" name="stop-search"
-                id="stop-search" class="flex rounded-sm text-lg bg-gray-200 border-4 border-green-900 w-full">
-                <input type="text" name="" id="" class="p-4 flex-grow bg-gray-200 focus:bg-white"
-                    [(ngModel)]="stopInput">
+            <div 
+                class="flex rounded-sm text-lg bg-gray-200 border-4 border-green-900 w-full"
+                role="combobox"
+                aria-haspopup="listbox"
+                aria-owns="stops-list"
+                aria-expanded="true">
+                <input 
+                    type="text"
+                    name="stop-search"
+                    id="stop-search"
+                    autofocus="true"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    class="p-4 flex-grow bg-gray-200 focus:bg-white"
+                    [(ngModel)]="stopInput"
+                    aria-controls="stops-list"
+                    aria-autocomplete="list"
+                    [attr.aria-activedescendant]="inputDecendent"
+                    >
                 <button class="py-4 px-6 border-l-4 border-green-900 bg-green-900"
                     (click)="locateUser()">{{ locateButtonIcon }}</button>
             </div>
             <button class="btn btn-secondary btn-s w-full mt-1" (click)="pickRandom()">🎲 Pick randomly</button>
-            <pl-list 
+            <pl-autocomplete-list
                 class="w-full mt-2"
-                (selected)="goToDepartures($event)">
-                <pl-list-item 
+                (selected)="goToDepartures($event)"
+                (activeIdentifer)="activeStopChange($event)"
+                id="stops-list"
+                >
+                <pl-autocomplete-list-item
                     *ngFor="let stop of stops | stopFilter:stopInput | slice:0:10 ; let i=index"
                     [label]="stop.name + ', towards ' + stop.destinations[0]"
                     [identifier]="stop.atco_code"
@@ -34,8 +52,8 @@
                         {{ stop.destinations | destinationsOutput }}</small>
                     <small *ngIf="stop.distance"
                         class="row-span-1 col-span-1 row-start-1 col-start-6 flex justify-center items-center">{{ stop.distance * 100000 | number:'0.2-2'}}m</small>
-                </pl-list-item>
-            </pl-list>
+                </pl-autocomplete-list-item>
+            </pl-autocomplete-list>
         </section>
     </div>
 </ng-container>

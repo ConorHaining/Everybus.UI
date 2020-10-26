@@ -16,6 +16,7 @@ export class StopFinderComponent implements OnInit {
   locateButtonIcon = '📍';
 
   showPicker = false;
+  inputDecendent = '';
 
   constructor(
     private readonly stopsService: StopsService,
@@ -63,6 +64,10 @@ export class StopFinderComponent implements OnInit {
 
   goToDepartures(atcoCode: string): void {
     this.router.navigate(['stop', atcoCode]);
+  }
+
+  activeStopChange(atcoCode: string): void {
+    this.inputDecendent = atcoCode;
   }
 
 }
