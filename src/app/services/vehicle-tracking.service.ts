@@ -20,7 +20,7 @@ export class VehicleTrackingService {
               );
   }
 
-  private getAllVehicleLocations(): Observable<any> {
+  getAllVehicleLocations(): Observable<any> {
     return this.http.get<any>(environment.tfeOpenDataUrls.vehicleLocations);
   }
 }
