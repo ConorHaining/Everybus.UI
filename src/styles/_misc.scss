@@ -3,9 +3,13 @@
   display: inline-block;
   text-align: center;
 
-  .loading & {
-    @apply bg-gray-300 #{!important}; 
-    @apply text-gray-300 #{!important};
+  /**
+   * Why [style]? To override the colours added to the element directly
+   * @see: https://css-tricks.com/override-inline-styles-with-css/
+   */
+  .loading &[style] {
+    @apply bg-gray-300 !important; 
+    @apply text-gray-300 !important;
     @apply animate-pulse;
   }
 }
@@ -14,8 +18,8 @@
   span,
   h1,
   h2 {
-    @apply bg-gray-300 #{!important}; 
-    @apply text-gray-300 #{!important};
+    @apply bg-gray-300 !important; 
+    @apply text-gray-300 !important;
     @apply animate-pulse;
   }
 }
