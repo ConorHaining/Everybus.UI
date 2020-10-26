@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, interval } from 'rxjs';
-import { filter, map, pluck, switchMap } from 'rxjs/operators';
+import { interval, Observable } from 'rxjs';
+import { map, pluck, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DepartureInformation } from '../stop-details-page/models/DepartureInformation';
 import { Stop } from './../models/Stop';
