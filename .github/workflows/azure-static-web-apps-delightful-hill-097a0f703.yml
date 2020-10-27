@@ -14,7 +14,6 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    id: build-deploy
     steps:
       - uses: actions/checkout@v2
         with:
@@ -32,7 +31,7 @@ jobs:
           app_artifact_location: "dist/every-bus" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
       - name: Update CORS
-        run: echo ${{ steps.build-deploy.output.static_web_app_url }}
+        run: echo ${{ steps.builddeploy.output.static_web_app_url }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
