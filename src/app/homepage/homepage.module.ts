@@ -1,11 +1,10 @@
-import { AutocompleteModule } from './../common/autocomplete/autocomplete.module';
-import { ListModule } from './../common/list/list.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PipesModule } from '../pipes/pipes.module';
-import { ServicesModule } from './../services/services.module';
+import { AutocompleteModule } from './../common/autocomplete/autocomplete.module';
 import { StopFinderComponent } from './components/stop-finder/stop-finder.component';
+import { StopOptionComponent } from './components/stop-option/stop-option.component';
 import { OverlayHostDirective } from './directives/overlay-host.directive';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -17,6 +16,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     HomepageComponent,
     OverlayHostDirective,
     StopFinderComponent,
+    StopOptionComponent,
   ],
   imports: [
     CommonModule,

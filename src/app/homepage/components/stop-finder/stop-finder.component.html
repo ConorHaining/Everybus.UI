@@ -41,8 +41,8 @@
                 >
                 <pl-autocomplete-list-item
                     *ngFor="let stop of stops | stopFilter:stopInput | slice:0:10 ; let i=index"
-                    [label]="stop.name + ', towards ' + stop.destinations[0]"
-                    [identifier]="stop.atco_code"
+                    [label]="stop.name"
+                    [id]="stop.atco_code"
                     (click)="goToDepartures(stop.atco_code)"
                     class="border-b truncate overflow py-2 hover:bg-gray-300 focus:bg-gray-300 grid grid-cols-6 grid-rows-1">
 
