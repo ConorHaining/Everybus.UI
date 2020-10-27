@@ -19,13 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "pl",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "pl",
       "kebab-case"
     ],
     "eofline": true,
@@ -146,7 +146,8 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "ordered-imports": true,
-    "import-sources-order": true
+    "import-sources-order": true,
+    "use-host-property-decorator": false
   },
   "rulesDirectory": [
     "codelyzer"
