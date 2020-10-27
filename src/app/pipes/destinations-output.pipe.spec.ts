@@ -1,12 +1,21 @@
 import { DestinationsOutputPipe } from './destinations-output.pipe';
 
 describe('DestinationsOutputPipe', () => {
+
   it('create an instance', () => {
     const pipe = new DestinationsOutputPipe();
     expect(pipe).toBeTruthy();
   });
 
   describe('transform', () => {
+
+    it('should return undefined if no values are given', () => {
+      const pipe = new DestinationsOutputPipe();
+
+      const result = pipe.transform(null);
+
+      expect(result).toBeUndefined();
+    });
 
     it('should return just one destination when one is given', () => {
       const pipe = new DestinationsOutputPipe();

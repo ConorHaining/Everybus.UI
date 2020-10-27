@@ -18,6 +18,18 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+### Unable to launch chrome?
+
+The `CHROME_BIN` environment variable may not be set, or set to the incorrect location.
+
+```bash
+# Check the path is correct for your setup
+# You may want to wrap it in quotes if there are any spaces
+export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+```
+
+[Source & further reading](https://justinribeiro.com/chronicle/2019/10/02/workaround-for-karma-and-chrome-headless-on-windows-subsystem-for-linux-ala-wsl/)
+
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).

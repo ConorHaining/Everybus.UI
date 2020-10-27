@@ -10,7 +10,6 @@ import { DepartureInformation } from './models/DepartureInformation';
 @Component({
   selector: 'stop-details-page',
   templateUrl: './stop-details-page.component.html',
-  styleUrls: ['./stop-details-page.component.scss']
 })
 export class StopDetailsPageComponent implements OnInit, OnDestroy {
   status: ConnectionStatus = ConnectionStatus.LIVE;
@@ -88,7 +87,7 @@ export class StopDetailsPageComponent implements OnInit, OnDestroy {
   }
 
   private createLoadingData(): void {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       const info: DepartureInformation = {
         routeColour: '#000000',
         textColour: '#FFFFFF',

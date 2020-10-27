@@ -8,7 +8,6 @@ import { VehicleTrackingService } from './../services/vehicle-tracking.service';
 @Component({
   selector: 'map-page',
   templateUrl: './map-page.component.html',
-  styleUrls: ['./map-page.component.scss']
 })
 export class MapPageComponent implements OnInit, OnDestroy {
 
@@ -48,21 +47,24 @@ export class MapPageComponent implements OnInit, OnDestroy {
         pointToLayer: (geoJsonPoint, latlng) => {
           return marker(latlng, {
             icon: divIcon({
-              html: `
-              <div class="bus">
-                  <span style="color: ${geoJsonPoint.properties.text_colour};">${geoJsonPoint.properties.name}</span>
-                  <div class="arrow_box" style="background-color: ${geoJsonPoint.properties.colour}; 
-                                                border: 0 solid ${geoJsonPoint.properties.colour};
-                                                transform: rotate(${geoJsonPoint.properties.heading}deg);"></div>
-              </div>
-              `
+              html: this.createIconMarkup(geoJsonPoint)
             })
           });
         }
       };
+
       const parsedGeoJson = geoJSON(this.vehicle, geoJsonOptions);
       this.vehicleLayer = parsedGeoJson;
     });
+  }
+
+  private createIconMarkup(geoJsonPoint: GeoJSON.Feature): string {
+    return `<div class="bus">
+                  <span style="color: ${geoJsonPoint.properties.text_colour};">${geoJsonPoint.properties.name}</span>
+                  <div class="arrow_box" style="background-color: ${geoJsonPoint.properties.colour};
+                                                border: 0 solid ${geoJsonPoint.properties.colour};
+                                                transform: rotate(${geoJsonPoint.properties.heading}deg);"></div>
+              </div>`;
   }
 
   ngOnDestroy(): void {

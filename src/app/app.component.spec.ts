@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
@@ -12,6 +12,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+    TestBed.overrideComponent(AppComponent, { set: { template: '<div></div>' } });
   }));
 
   it('should create the app', () => {
@@ -20,9 +21,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'every-bus'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('every-bus');
-  });
 });
