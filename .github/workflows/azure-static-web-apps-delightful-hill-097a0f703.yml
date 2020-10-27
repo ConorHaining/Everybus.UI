@@ -41,9 +41,6 @@ jobs:
           azcliversion: 2.0.72
           inlineScript: |
           az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
-      
-      - name: 
-        run: echo 
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
