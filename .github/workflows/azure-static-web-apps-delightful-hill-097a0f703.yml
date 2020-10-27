@@ -30,8 +30,20 @@ jobs:
           app_location: "/" # App source code path
           app_artifact_location: "dist/every-bus" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-      - name: Update CORS
-        run: echo ${{ steps.builddeploy.outputs.static_web_app_url }}
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Update CORS on webapp
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+          az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
+      
+      - name: 
+        run: echo 
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -44,3 +56,15 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DELIGHTFUL_HILL_097A0F703 }}
           action: "close"
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Update CORS on webappaz ad sp create-for-rbac --name "myApp" --role contributor \
+      --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
+      --sdk-auth
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+          az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
