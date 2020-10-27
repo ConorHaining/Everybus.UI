@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+import { Component, OnInit, ViewChildren, QueryList, HostListener, AfterContentInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Stop } from 'src/app/models/Stop';
 import { StopsService } from 'src/app/services/stops.service';
+import { StopOptionComponent } from '../stop-option/stop-option.component';
 
 @Component({
   selector: 'stop-finder',
   templateUrl: './stop-finder.component.html',
   styleUrls: ['./stop-finder.component.scss']
 })
-export class StopFinderComponent implements OnInit {
+export class StopFinderComponent implements OnInit, AfterViewInit {
+
+  @ViewChildren(StopOptionComponent) options: QueryList<StopOptionComponent>;
+  private keyManager: ActiveDescendantKeyManager<StopOptionComponent>;
+  activeDescendant: string;
 
   stops: Stop[] = [];
   stopInput = '';
@@ -16,6 +22,7 @@ export class StopFinderComponent implements OnInit {
   locateButtonIcon = '📍';
 
   showPicker = false;
+  inputDecendent = '';
 
   constructor(
     private readonly stopsService: StopsService,
@@ -28,26 +35,14 @@ export class StopFinderComponent implements OnInit {
     });
   }
 
-  locateUser(): void {
-    // this.locateButtonIcon = '⌛';
-    // window.navigator.geolocation
-    //   .getCurrentPosition(
-    //     success => {
-    //       this.locateButtonIcon = '📍';
-
-    //       const currentCoordinates = success.coords;
-    //       const opts = {
-    //         yName: 'latitude',
-    //         xName: 'longitude'
-    //       };
-    //       this.stops = sortByDistance(currentCoordinates, this.stops, opts);
-    //       this.stopInput = '';
-
-    //     },
-    //     error => {
-    //       this.locateButtonIcon = '❌';
-    //       console.error(error);
-    //     });
+  ngAfterViewInit(): void {
+    this.keyManager = new ActiveDescendantKeyManager(this.options).withWrap().withHomeAndEnd();
+    this.keyManager.setFirstItemActive();
+    this.keyManager.change.subscribe(x => {
+      const item = this.options.toArray()[x];
+      this.activeDescendant = item.identifer;
+    });
+    this.options.changes.subscribe(x => this.activeDescendant = null);
   }
 
   pickRandom(): void {
@@ -59,6 +54,14 @@ export class StopFinderComponent implements OnInit {
 
   togglePicker(): void {
     this.showPicker = !this.showPicker;
+  }
+
+  goToDepartures(atcoCode: string): void {
+    this.router.navigate(['stop', atcoCode]);
+  }
+
+  activeStopChange(atcoCode: string): void {
+    this.inputDecendent = atcoCode;
   }
 
 }
