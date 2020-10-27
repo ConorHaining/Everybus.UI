@@ -1,6 +1,5 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
-import { Component, OnInit, ViewChildren, QueryList, HostListener, AfterContentInit, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Stop } from 'src/app/models/Stop';
 import { StopsService } from 'src/app/services/stops.service';
 import { StopOptionComponent } from '../stop-option/stop-option.component';
@@ -43,19 +42,8 @@ export class StopFinderComponent implements OnInit, AfterViewInit {
     this.options.changes.subscribe(x => this.activeDescendant = null);
   }
 
-  pickRandom(): void {
-    const index = Math.floor(Math.random() * this.stops.length);
-    const stop = this.stops[index];
-
-    this.router.navigate(['stop', stop.atco_code]);
-  }
-
   togglePicker(): void {
     this.showPicker = !this.showPicker;
-  }
-
-  goToDepartures(atcoCode: string): void {
-    this.router.navigate(['stop', atcoCode]);
   }
 
   activeStopChange(atcoCode: string): void {
