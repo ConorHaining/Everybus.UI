@@ -21,4 +21,11 @@ jobs:
       - name: npm run tests
         run: |
           npm run test:ci
+      - name: Comment Test Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: coverage/every-bus/lcov.info
+          name: codecov-umbrella 
+          fail_ci_if_error: true 
+          verbose: true 
       
