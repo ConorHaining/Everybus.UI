@@ -39,8 +39,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
-          inlineScript: |
-          az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
+          inlineScript: az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -57,11 +56,8 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: Update CORS on webappaz ad sp create-for-rbac --name "myApp" --role contributor \
-      --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
-      --sdk-auth
+      - name: Update CORS on webapp
         uses: azure/CLI@v1
         with:
           azcliversion: 2.0.72
-          inlineScript: |
-          az webapp cors add --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
+          inlineScript: az webapp cors remove --allowed-origins ${{ steps.builddeploy.outputs.static_web_app_url }} --id ${{ secrets.EVERYBUS_RESOURCE_ID }}
