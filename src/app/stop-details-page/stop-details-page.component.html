@@ -8,7 +8,6 @@
 
 <div [class.loading]="isLoading" *ngIf="!isError">
     <header class="m-2">
-        <button class="btn btn-s btn-secondary w-full" routerLink="/">◀️ Go back</button>
         <div class="my-6">
             <h1 class="text-3xl">🚏 {{ stop?.name }}</h1>
             <h2 class="truncate">↖️ Towards {{ stop?.destinations | destinationsOutput }}</h2>
