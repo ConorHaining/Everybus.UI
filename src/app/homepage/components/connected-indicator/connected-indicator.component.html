@@ -1,8 +1,3 @@
-<!-- <span class="relative inline-flex">
-    <span class="lozenge lozenge-success mb-2">Live</span>
-    
-</span> -->
-
 <span class="relative inline-flex">
     <span class="lozenge mb-2" [class.lozenge-success]="isLive" [class.lozenge-warning]="isOffline">{{ status }}</span>
     <span class="flex absolute h-4 w-4 top-0 right-0 -mt-2 -mr-2" *ngIf="isLive">
