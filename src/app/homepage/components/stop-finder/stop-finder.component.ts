@@ -1,5 +1,6 @@
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { Stop } from 'src/app/models/Stop';
 import { StopsService } from 'src/app/services/stops.service';
 import { StopOptionComponent } from '../stop-option/stop-option.component';
@@ -24,6 +25,7 @@ export class StopFinderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private readonly stopsService: StopsService,
+    private readonly router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +50,10 @@ export class StopFinderComponent implements OnInit, AfterViewInit {
 
   activeStopChange(atcoCode: string): void {
     this.inputDecendent = atcoCode;
+  }
+
+  goToDepartures(atcoCode: string): void {
+    this.router.navigate(['stop', atcoCode]);
   }
 
 }

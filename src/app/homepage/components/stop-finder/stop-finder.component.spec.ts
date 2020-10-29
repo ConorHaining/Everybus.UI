@@ -8,6 +8,7 @@ describe('StopFinderComponent', () => {
   let component: StopFinderComponent;
   let fixture: ComponentFixture<StopFinderComponent>;
   let stopService: StopsService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,18 +24,19 @@ describe('StopFinderComponent', () => {
         },
         {
           provide: Router,
-          useClass: class {
-              navigate = jasmine.createSpy('navigate');
+          useValue: {
+            navigate: jasmine.createSpy().and.callThrough()
           }
-      }
+        }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StopFinderComponent);
     stopService = TestBed.inject(StopsService);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -46,7 +48,7 @@ describe('StopFinderComponent', () => {
     });
 
     it('should fetch to get all stops', () => {
-        expect(stopService.getAllStops).toHaveBeenCalled();
+      expect(stopService.getAllStops).toHaveBeenCalled();
     });
 
   });
@@ -54,11 +56,11 @@ describe('StopFinderComponent', () => {
   describe('togglePicker', () => {
 
     it('should show picker when hidden', () => {
-        component.showPicker = false;
+      component.showPicker = false;
 
-        component.togglePicker();
+      component.togglePicker();
 
-        expect(component.showPicker).toBeTrue();
+      expect(component.showPicker).toBeTrue();
     });
 
     it('should hide picker when shown', () => {
@@ -69,6 +71,33 @@ describe('StopFinderComponent', () => {
       expect(component.showPicker).toBeFalse();
     });
 
+  });
+
+  describe('goToDepartures', () => {
+
+    it('should navigate the user', () => {
+      const atcoCode = '1234567890';
+
+      component.goToDepartures(atcoCode);
+
+      expect(router.navigate).toHaveBeenCalled();
+    });
+
+    it('should navigate the user to the stops page', () => {
+      const atcoCode = '1234567890';
+
+      component.goToDepartures(atcoCode);
+
+      expect(router.navigate).toHaveBeenCalledWith(['stop', jasmine.any(String)]);
+    });
+
+    it('should nvagigate the user to the stops page with a given atoc code', () => {
+      const atcoCode = '1234567890';
+
+      component.goToDepartures(atcoCode);
+
+      expect(router.navigate).toHaveBeenCalledWith([jasmine.any(String), atcoCode]);
+    });
   });
 
 });

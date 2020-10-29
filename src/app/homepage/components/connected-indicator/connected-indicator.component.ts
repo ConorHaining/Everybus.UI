@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'connected-indicator',
   templateUrl: './connected-indicator.component.html',
+  // tslint:disable-next-line: no-host-metadata-property
+  host: {
+    role: 'status'
+  }
 })
 export class ConnectedIndicatorComponent implements OnInit {
   status: ConnectionStatus = ConnectionStatus.LIVE;

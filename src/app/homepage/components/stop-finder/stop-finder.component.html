@@ -28,11 +28,11 @@
                     aria-controls="stops-list"
                     aria-autocomplete="list"
                     [attr.aria-activedescendant]="inputDecendent"
+                    placeholder="The Shore, Waverly Steps, Brandon Terrace"
                     >
-                <button class="py-4 px-6 border-l-4 border-green-900 bg-green-900"
-                    (click)="locateUser()">{{ locateButtonIcon }}</button>
+                <!-- <button disabled class="py-4 px-6 border-l-4 border-green-900 bg-green-900">{{ locateButtonIcon }}</button> -->
             </div>
-            <button class="btn btn-secondary btn-s w-full mt-1" (click)="pickRandom()">🎲 Pick randomly</button>
+            <button class="btn btn-secondary btn-s w-full mt-1" disabled>🎲 Pick randomly</button>
             <pl-autocomplete-list
                 class="w-full mt-2"
                 (selected)="goToDepartures($event)"
